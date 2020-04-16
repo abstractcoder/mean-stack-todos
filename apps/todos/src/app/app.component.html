@@ -1,8 +1,8 @@
-<div style="text-align:center">
-  <h1>Welcome to todos!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-  />
+<input type="text" #newTodo (keydown.enter)="createTodo(newTodo.value); newTodo.value = '';" placeholder="Type todo and press enter" />
+
+<div *ngFor="let todo of todos" class="todo">
+  <button class="btn-delete" (click)="deleteTodo(todo)">X</button>
+  <input type="checkbox" [id]="'cb-' + todo._id" [checked]="todo.completed" (change)="toggleTodo(todo)" />
+  <label [for]="'cb-' + todo._id">{{todo.text}}</label>
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
+
